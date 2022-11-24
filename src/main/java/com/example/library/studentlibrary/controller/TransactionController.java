@@ -1,5 +1,6 @@
 package com.example.library.studentlibrary.controller;
 
+import com.example.library.studentlibrary.models.Transaction;
 import com.example.library.studentlibrary.services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,8 +22,8 @@ public class TransactionController {
 
     @PostMapping("/returnBook")
     public ResponseEntity returnBook(@RequestParam("cardId") int cardId, @RequestParam("bookId") int bookId) throws Exception{
-        String externalTransactionId = transactionService.returnBook(cardId, bookId);
-        return new ResponseEntity<>("transaction completed, here is your transactionId - " + externalTransactionId, HttpStatus.ACCEPTED);
+        Transaction externalTransaction = transactionService.returnBook(cardId, bookId);
+        return new ResponseEntity<>("transaction completed, here is your transactionId - " + externalTransaction.getTransactionId(), HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/")
