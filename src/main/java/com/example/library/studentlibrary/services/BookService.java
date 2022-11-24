@@ -28,8 +28,5 @@ public class BookService {
         }else{
            return bookRepository.findByAvailability(available);
         }
-
-
     }
-
 }

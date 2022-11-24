@@ -30,7 +30,7 @@ public class StudentService {
 
     public void createStudent(Student student){
         Card newCard = cardService.createAndReturn(student);
-        logger.info("The card for the student {} is created with the details - {}", student, newCard);
+        //logger.info("The card for the student {} is created with the details - {}", student, newCard);
 
     }
 
@@ -39,7 +39,6 @@ public class StudentService {
     }
 
     public void deleteStudent(int id){
-
         cardService.deactivateCard(id);
         studentRepository.deleteCustom(id);
     }

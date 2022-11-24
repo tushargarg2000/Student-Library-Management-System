@@ -19,7 +19,6 @@ public class CardService {
         student.setCard(card);
 
         cardRepository.save(card);
-
         return card;
     }
 
