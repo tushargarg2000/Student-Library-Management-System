@@ -2,7 +2,6 @@ package com.example.library.studentlibrary.services;
 
 import com.example.library.studentlibrary.models.Card;
 import com.example.library.studentlibrary.models.Student;
-import com.example.library.studentlibrary.repositories.CardRepository;
 import com.example.library.studentlibrary.repositories.StudentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +19,7 @@ public class StudentService {
     @Autowired
     StudentRepository studentRepository;
 
-    public Student getDetails(String email){
+    public Student getDetailsByEmail(String email){
         return studentRepository.findByEmailId(email);
     }
 
@@ -30,8 +29,6 @@ public class StudentService {
 
     public void createStudent(Student student){
         Card newCard = cardService.createAndReturn(student);
-        //logger.info("The card for the student {} is created with the details - {}", student, newCard);
-
     }
 
     public void updateStudent(Student student){

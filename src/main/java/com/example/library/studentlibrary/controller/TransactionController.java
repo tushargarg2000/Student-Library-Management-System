@@ -25,14 +25,4 @@ public class TransactionController {
         Transaction externalTransaction = transactionService.returnBook(cardId, bookId);
         return new ResponseEntity<>("transaction completed, here is your transactionId - " + externalTransaction.getTransactionId(), HttpStatus.ACCEPTED);
     }
-
-    @GetMapping("/")
-    public ResponseEntity getTransactionsForCard(@RequestParam("cardId") int cardId){
-        return new ResponseEntity<>("The list of transactions " + null, HttpStatus.OK);
-    }
-
-    @GetMapping("/all")
-    public ResponseEntity getTransactions(){
-        return new ResponseEntity<>("The list of transactions " + null, HttpStatus.OK);
-    }
 }

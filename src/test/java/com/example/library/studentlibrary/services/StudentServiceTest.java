@@ -1,6 +1,5 @@
 package com.example.library.studentlibrary.services;
 
-import com.example.library.studentlibrary.models.Card;
 import com.example.library.studentlibrary.models.Student;
 import com.example.library.studentlibrary.repositories.StudentRepository;
 import org.junit.Before;
@@ -47,7 +46,7 @@ public class StudentServiceTest {
     @Test
     public void testGetDetails(){
         String email = "1@gmail.com";
-        Student student = studentService.getDetails(email);
+        Student student = studentService.getDetailsByEmail(email);
         assert((student.getEmailId()=="1@gmail.com") && (student.getName()=="1") && (student.getAge()==1) && (student.getCountry()=="India"));
     }
 

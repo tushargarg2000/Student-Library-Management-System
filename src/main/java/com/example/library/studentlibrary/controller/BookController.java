@@ -30,10 +30,6 @@ public class BookController {
                                    @RequestParam(value = "available", required = false, defaultValue = "false") boolean available,
                                    @RequestParam(value = "author", required = false) String author){
 
-        // genre + author
-        // genre
-        // author
-
         List<Book> bookList = bookService.getBooks(genre, available, author);
 
         return new ResponseEntity<>(bookList, HttpStatus.OK);

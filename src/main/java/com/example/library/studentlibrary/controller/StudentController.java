@@ -8,12 +8,9 @@ import com.example.library.studentlibrary.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-
-import java.security.Principal;
 
 @RestController
 @RequestMapping("/student")
@@ -25,17 +22,9 @@ public class StudentController {
     @Autowired
     UserRepository userRepository;
 
-
-    @GetMapping("/all")
-    public ResponseEntity getAllStudents(){
-        return new ResponseEntity<>("The list of all the students is - " + null, HttpStatus.OK);
-    }
-
-    @GetMapping("/")
-    public ResponseEntity getStudent(){
-        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String username = principal.getUsername();
-        Student obj = studentService.getDetails(username);
+    @GetMapping("/studentByEmail")
+    public ResponseEntity getStudentByEmail(@RequestParam("email") String email){
+        Student obj = studentService.getDetailsByEmail(email);
         return new ResponseEntity<>("Student details - " + obj, HttpStatus.OK);
     }
 
