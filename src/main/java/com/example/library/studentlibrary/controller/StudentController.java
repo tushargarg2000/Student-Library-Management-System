@@ -60,8 +60,6 @@ public class StudentController {
         return new ResponseEntity<>("the student is successfully added to the system", HttpStatus.CREATED);
     }
 
-    // curl -XPUT "127.0.0.1:8080/updateStudent" -d'{"name": "Piyush", "email": "p@gmail.com", id}'
-
     @PutMapping("/")
     public ResponseEntity updateStudent(@RequestBody Student student){
 
@@ -75,17 +73,4 @@ public class StudentController {
         return new ResponseEntity<>("student is deleted", HttpStatus.ACCEPTED);
     }
 
-    @PutMapping("/update_password")
-    public ResponseEntity updatePassword(@RequestParam("new_password") String new_password){
-
-        Principal principal = (Principal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String username = principal.getName();
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-
-        String new_encoded_password = encoder.encode(new_password);
-//
-//        userRepository.
-
-        return null;
-    }
 }
