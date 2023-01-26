@@ -19,6 +19,7 @@ public class StudentService {
     @Autowired
     StudentRepository studentRepository;
 
+
     public Student getDetailsByEmail(String email){
         return studentRepository.findByEmailId(email);
     }

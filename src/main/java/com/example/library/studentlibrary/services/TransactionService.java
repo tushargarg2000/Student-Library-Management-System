@@ -25,12 +25,15 @@ public class TransactionService {
     TransactionRepository transactionRepository;
 
     @Value("${books.max_allowed}")
+    public
     int max_allowed_books;
 
     @Value("${books.max_allowed_days}")
+    public
     int getMax_allowed_days;
 
     @Value("${books.fine.per_day}")
+    public
     int fine_per_day;
 
     public String issueBook(int cardId, int bookId) throws Exception {
@@ -43,12 +46,14 @@ public class TransactionService {
         transaction.setCard(card);
         transaction.setIssueOperation(true);
 
+        //Book should be available
         if(book == null || !book.isAvailable()){
             transaction.setTransactionStatus(TransactionStatus.FAILED);
             transactionRepository.save(transaction);
             throw new Exception("Book is either unavailable or not present");
         }
 
+        //Card is unavaible or its deactivated
         if(card == null || card.getCardStatus().equals(CardStatus.DEACTIVATED)){
             transaction.setTransactionStatus(TransactionStatus.FAILED);
             transactionRepository.save(transaction);
@@ -67,11 +72,17 @@ public class TransactionService {
         bookList.add(book);
         card.setBooks(bookList);
 
+        cardRepository.save(card);
+
         bookRepository.updateBook(book);
 
         transaction.setTransactionStatus(TransactionStatus.SUCCESSFUL);
 
         transactionRepository.save(transaction);
+        //This saving of transcation can't be avoided bcz card is not bidirectionally connected to txn
+        //and for the book we are not calling the inbuilt .save function
+
+
 
         return transaction.getTransactionId();
     }
